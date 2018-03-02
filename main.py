@@ -10,12 +10,9 @@ h2o.init()
 
 @app.listener('before_server_start')
 async def init(_app, _loop):
-    docker_data_path = "/volume_data_files/very_clean_jokes.csv"
-    jokes = h2o.import_file(docker_data_path, col_types=['int', 'string'])
-
-    predictor = Predictor(jokes)
-    predictor._init_w2v()
-    predictor._init_dad_joke_model('/volume_data_files/GBM_model_python_1518984844590_2')
+    predictor = Predictor()
+    predictor._init_w2v('/volume_data_files/w2v.hex')
+    predictor._init_dad_joke_model('/volume_data_files/dad_jokes_model.hex')
 
     app.predictor = predictor
     print('initialized')
