@@ -4,17 +4,21 @@ import h2o
 
 class Predictor:
 
-    def __init__(self):
+    def __init__(self,path_to_w2v_model, path_to_dad_joke_model):
         stop_words_data_path = "https://raw.githubusercontent.com/h2oai/h2o-tutorials/master/h2o-world-2017/nlp/stopwords.csv"
         self.STOP_WORDS = pd.read_csv(stop_words_data_path, header=0)
         self.STOP_WORDS = list(self.STOP_WORDS['STOP_WORD'])
+        self.path_to_w2v_model = path_to_w2v_model
+        self.path_to_dad_joke_model = path_to_dad_joke_model
+        self._init_w2v()
+        self._init_dad_joke_model()
 
-    def _init_w2v(self, path_to_model):
-        self.w2v_model = h2o.load_model(path_to_model)
+    def _init_w2v(self):
+        self.w2v_model = h2o.load_model(self.path_to_w2v_model)
         print("_init_w2v")
 
-    def _init_dad_joke_model(self, path_to_model):
-        self.dad_joke_model = h2o.load_model(path_to_model)
+    def _init_dad_joke_model(self):
+        self.dad_joke_model = h2o.load_model(self.path_to_dad_joke_model)
         print("_init_dad_joke_model")
 
     def make_prediction(self, text: str) -> float:
