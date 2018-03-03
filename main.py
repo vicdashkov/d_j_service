@@ -11,10 +11,7 @@ h2o.init(ip='h2o')
 
 @app.listener('before_server_start')
 async def init(_app, _loop):
-    predictor = Predictor()
-    predictor._init_w2v('/data/w2v.hex')
-    predictor._init_dad_joke_model('/data/dad_jokes_model.hex')
-
+    predictor = Predictor(path_to_w2v_model='/data/w2v.hex', path_to_dad_joke_model='/data/dad_jokes_model.hex')
     app.predictor = predictor
     print('initialized')
 
