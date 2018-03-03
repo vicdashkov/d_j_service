@@ -1,1 +1,0 @@
-docker run -p 54321:54321 -v {path}/d_j_service/data:/volume_data_files/ {h2o_instance}
