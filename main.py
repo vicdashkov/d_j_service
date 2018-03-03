@@ -1,3 +1,4 @@
+
 from sanic import Sanic
 from sanic.response import json as sanci_json
 from predictor import Predictor
@@ -5,14 +6,14 @@ import json
 import h2o
 
 app = Sanic()
-h2o.init()
+h2o.init(ip='h2o')
 
 
 @app.listener('before_server_start')
 async def init(_app, _loop):
     predictor = Predictor()
-    predictor._init_w2v('/volume_data_files/w2v.hex')
-    predictor._init_dad_joke_model('/volume_data_files/dad_jokes_model.hex')
+    predictor._init_w2v('/data/w2v.hex')
+    predictor._init_dad_joke_model('/data/dad_jokes_model.hex')
 
     app.predictor = predictor
     print('initialized')
@@ -28,7 +29,6 @@ async def predict(request):
 def main():
     app.static('/static', './static')
     app.run(host='0.0.0.0', port=13321)
-
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  h2o:
+    build: ./h2o_dockerfile/.
+    ports:
+      - 54321:54321
+      - 54322:54322
+    command: ["java", "-Xmx4g", "-jar", "/opt/h2o.jar"]
+    volumes:
+      - ./data/:/data/
+
+  app:
+    build: .
+    depends_on:
+      - h2o
+    ports:
+      - 13321:13321

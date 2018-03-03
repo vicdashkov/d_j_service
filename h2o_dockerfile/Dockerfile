@@ -41,7 +41,7 @@ RUN \
 EXPOSE 54321
 EXPOSE 54322
 
-ENTRYPOINT ["java", "-Xmx4g", "-jar", "/opt/h2o.jar"]
+#ENTRYPOINT ["java", "-Xmx4g", "-jar", "/opt/h2o.jar"]
 # Define default command
 
 #CMD ["/bin/bash"]
