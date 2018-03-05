@@ -5,7 +5,18 @@
     <title>Dad Joke Service</title>
     <style>
         body {
-            background-image: url("rainbow.png");
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background-color: #ff269a;
+            transition: background-color 0.5s;
+            //background-image: url("rainbow.png");
+            //background-position: center bottom;
+            //background-size: 84%;
+        }
+
+        body.on {
+            background-color: black;
         }
 
         h1, p, div {
@@ -14,24 +25,411 @@
 
         h1, p {
             font-size: 80px;
-            color: white;
+            border-color: white;
+        }
+
+        .content {
+                position: relative;
+                display: none;
+        }
+
+        .rings-layer {
+            position: absolute;
+            width: 100%;
+            height: 136%;
+            top:31%;
+            transition: top 10s ease-in;
+        }
+
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s;
+            border-radius: 50%;
+            border: 5.1vw solid;
+        }
+
+        .ring.base.on {
+            border-color: black !important;
+        }
+
+        .ring.lamp {
+            border: 12px solid;
+            animation: 1.5s ease-in-out 0.25s infinite alternate;
+        }
+
+
+        #ring-back {
+            transition: none;
+            width: 14vw;
+            height: 14vw;
+            background-color: #222;
+            border: 11px solid #CA0012;
+        }
+
+        #ring-0 {
+            border-color: #f8021e;
+            width: 15vw;
+            height: 15vw;
+        }
+
+        #ring-0-lamp {
+            width: 25vw;
+            height: 25vw;
+            border-color: #ff0b1b;
+        }
+
+        #ring-0-lamp.on {
+            border-color: white;
+            animation-name: neon0;
+        }
+
+        #ring-1 {
+            border-color: #ff3a20;
+            width: 25vw;
+            height: 25vw;
+        }
+
+        #ring-1-lamp {
+            width: 35vw;
+            height: 35vw;
+            border-color: #ff5125;
+        }
+
+        #ring-1-lamp.on {
+            border-color: white;
+            animation-name: neon1;
+        }
+
+        #ring-2 {
+            border-color: #ff8431;
+            width: 35vw;
+            height: 35vw;
+        }
+
+        #ring-2-lamp {
+            width: 45vw;
+            height: 45vw;
+            border-color: #ffa038;
+        }
+
+        #ring-2-lamp.on {
+            border-color: white;
+            animation-name: neon2;
+        }
+
+        #ring-3 {
+            border-color: #ffc343;
+            width: 46vw;
+            height: 46vw;
+        }
+
+        #ring-3-lamp {
+            width: 56vw;
+            height: 56vw;
+            border-color: #fedc4b;
+        }
+
+        #ring-3-lamp.on {
+            border-color: white;
+            animation-name: neon3;
+        }
+
+        #ring-4 {
+            border-color: #49cb80;
+            width: 56vw;
+            height: 56vw;
+        }
+
+        #ring-4-lamp {
+            width: 66vw;
+            height: 66vw;
+            border-color: #4dec6b;
+        }
+
+        #ring-4-lamp.on {
+            border-color: white;
+            animation-name: neon4;
+        }
+
+        #ring-5 {
+            border-color: #00aa9f;
+            width: 67vw;
+            height: 67vw;
+        }
+
+        #ring-5-lamp {
+            width: 77vw;
+            height: 77vw;
+            border-color: #00c2a1;
+        }
+
+        #ring-5-lamp.on {
+            border-color: white;
+            animation-name: neon5;
+        }
+
+        #ring-6 {
+            border-color: #086cbf;
+            width: 78vw;
+            height: 78vw;
+        }
+
+        #ring-6-lamp {
+            width: 88vw;
+            height: 88vw;
+            border-color: #0980d2;
+        }
+
+        #ring-6-lamp.on {
+            border-color: white;
+            animation-name: neon6;
+        }
+
+        #ring-7 {
+            border-color: #6211d2;
+            width: 89vw;
+            height: 89vw;
+        }
+
+        #ring-7-lamp {
+            width: 99vw;
+            height: 99vw;
+            border-color: #6a13e5;
+        }
+
+        #ring-7-lamp.on {
+            border-color: white;
+            animation-name: neon7;
+        }
+
+        #ring-8 {
+            border-color: #690cab;
+            width: 100vw;
+            height: 100vw;
+        }
+
+        #ring-8-lamp {
+            width: 110vw;
+            height: 110vw;
+            border-color: #7609b4;
+        }
+
+        #ring-8-lamp.on {
+            border-color: white;
+            animation-name: neon8;
+        }
+
+        #ring-9 {
+            border-color: #93089b;
+            width: 111vw;
+            height: 111vw;
+        }
+
+        #ring-9-lamp {
+            width: 121vw;
+            height: 121vw;
+            border-color: #a7039c;
+        }
+
+        #ring-9-lamp.on {
+            border-color: white;
+            animation-name: neon9;
+        }
+
+        #ring-10 {
+            border-color: #c90095;
+            width: 122vw;
+            height: 122vw;
+        }
+
+        #ring-10-lamp {
+            width: 132vw;
+            height: 132vw;
+            border-color: #e5009a;
+        }
+
+        #ring-10-lamp.on {
+            border-color: white;
+            animation-name: neon10;
+        }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+        }
+
+        /*glow*/
+
+        @keyframes neon0 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff0b1b, 0 0 70px #ff0b1b, 0 0 80px #ff0b1b, 0 0 100px #ff0b1b, 0 0 150px #ff0b1b,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #ff0b1b, inset 0 0 70px #ff0b1b, inset 0 0 80px #ff0b1b, inset 0 0 100px #ff0b1b, inset 0 0 150px #ff0b1b;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0b1b, 0 0 35px #ff0b1b, 0 0 40px #ff0b1b, 0 0 50px #ff0b1b, 0 0 75px #ff0b1b,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #ff0b1b, inset 0 0 35px #ff0b1b, inset 0 0 40px #ff0b1b, inset 0 0 50px #ff0b1b, inset 0 0 75px #ff0b1b;
+          }
+        }
+
+        @keyframes neon1 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff3a20, 0 0 70px #ff3a20, 0 0 80px #ff3a20, 0 0 100px #ff3a20, 0 0 150px #ff3a20,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #ff3a20, inset 0 0 70px #ff3a20, inset 0 0 80px #ff3a20, inset 0 0 100px #ff3a20, inset 0 0 150px #ff3a20;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff3a20, 0 0 35px #ff3a20, 0 0 40px #ff3a20, 0 0 50px #ff3a20, 0 0 75px #ff3a20,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #ff3a20, inset 0 0 35px #ff3a20, inset 0 0 40px #ff3a20, inset 0 0 50px #ff3a20, inset 0 0 75px #ff3a20;
+          }
+        }
+
+        @keyframes neon2 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ffa038, 0 0 70px #ffa038, 0 0 80px #ffa038, 0 0 100px #ffa038, 0 0 150px #ffa038,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #ffa038, inset 0 0 70px #ffa038, inset 0 0 80px #ffa038, inset 0 0 100px #ffa038, inset 0 0 150px #ffa038;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ffa038, 0 0 35px #ffa038, 0 0 40px #ffa038, 0 0 50px #ffa038, 0 0 75px #ffa038,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #ffa038, inset 0 0 35px #ffa038, inset 0 0 40px #ffa038, inset 0 0 50px #ffa038, inset 0 0 75px #ffa038;
+          }
+        }
+
+        @keyframes neon3 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fedc4b, 0 0 70px #fedc4b, 0 0 80px #fedc4b, 0 0 100px #fedc4b, 0 0 150px #fedc4b,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #fedc4b, inset 0 0 70px #fedc4b, inset 0 0 80px #fedc4b, inset 0 0 100px #fedc4b, inset 0 0 150px #fedc4b;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fedc4b, 0 0 35px #fedc4b, 0 0 40px #fedc4b, 0 0 50px #fedc4b, 0 0 75px #fedc4b,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #fedc4b, inset 0 0 35px #fedc4b, inset 0 0 40px #fedc4b, inset 0 0 50px #fedc4b, inset 0 0 75px #fedc4b;
+          }
+        }
+
+        @keyframes neon4 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #4dec6b, 0 0 70px #4dec6b, 0 0 80px #4dec6b, 0 0 100px #4dec6b, 0 0 150px #4dec6b,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #4dec6b, inset 0 0 70px #4dec6b, inset 0 0 80px #4dec6b, inset 0 0 100px #4dec6b, inset 0 0 150px #4dec6b;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4dec6b, 0 0 35px #4dec6b, 0 0 40px #4dec6b, 0 0 50px #4dec6b, 0 0 75px #4dec6b,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #4dec6b, inset 0 0 35px #4dec6b, inset 0 0 40px #4dec6b, inset 0 0 50px #4dec6b, inset 0 0 75px #4dec6b;
+          }
+        }
+
+        @keyframes neon5 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00c2a1, 0 0 70px #00c2a1, 0 0 80px #00c2a1, 0 0 100px #00c2a1, 0 0 150px #00c2a1,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #00c2a1, inset 0 0 70px #00c2a1, inset 0 0 80px #00c2a1, inset 0 0 100px #00c2a1, inset 0 0 150px #00c2a1;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00c2a1, 0 0 35px #00c2a1, 0 0 40px #00c2a1, 0 0 50px #00c2a1, 0 0 75px #00c2a1,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #00c2a1, inset 0 0 35px #00c2a1, inset 0 0 40px #00c2a1, inset 0 0 50px #00c2a1, inset 0 0 75px #00c2a1;
+          }
+        }
+
+        @keyframes neon6 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0980d2, 0 0 70px #0980d2, 0 0 80px #0980d2, 0 0 100px #0980d2, 0 0 150px #0980d2,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #0980d2, inset 0 0 70px #0980d2, inset 0 0 80px #0980d2, inset 0 0 100px #0980d2, inset 0 0 150px #0980d2;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0980d2, 0 0 35px #0980d2, 0 0 40px #0980d2, 0 0 50px #0980d2, 0 0 75px #0980d2,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #0980d2, inset 0 0 35px #0980d2, inset 0 0 40px #0980d2, inset 0 0 50px #0980d2, inset 0 0 75px #0980d2;
+          }
+        }
+
+        @keyframes neon7 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #6a13e5, 0 0 70px #6a13e5, 0 0 80px #6a13e5, 0 0 100px #6a13e5, 0 0 150px #6a13e5,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #6a13e5, inset 0 0 70px #6a13e5, inset 0 0 80px #6a13e5, inset 0 0 100px #6a13e5, inset 0 0 150px #6a13e5;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #6a13e5, 0 0 35px #6a13e5, 0 0 40px #6a13e5, 0 0 50px #6a13e5, 0 0 75px #6a13e5,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #6a13e5, inset 0 0 35px #6a13e5, inset 0 0 40px #6a13e5, inset 0 0 50px #6a13e5, inset 0 0 75px #6a13e5;
+          }
+        }
+
+        @keyframes neon8 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #7609b4, 0 0 70px #7609b4, 0 0 80px #7609b4, 0 0 100px #7609b4, 0 0 150px #7609b4,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #7609b4, inset 0 0 70px #7609b4, inset 0 0 80px #7609b4, inset 0 0 100px #7609b4, inset 0 0 150px #7609b4;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #7609b4, 0 0 35px #7609b4, 0 0 40px #7609b4, 0 0 50px #7609b4, 0 0 75px #7609b4,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #7609b4, inset 0 0 35px #7609b4, inset 0 0 40px #7609b4, inset 0 0 50px #7609b4, inset 0 0 75px #7609b4;
+          }
+        }
+
+        @keyframes neon9 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #a7039c, 0 0 70px #a7039c, 0 0 80px #a7039c, 0 0 100px #a7039c, 0 0 150px #a7039c,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #a7039c, inset 0 0 70px #a7039c, inset 0 0 80px #a7039c, inset 0 0 100px #a7039c, inset 0 0 150px #a7039c;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #a7039c, 0 0 35px #a7039c, 0 0 40px #a7039c, 0 0 50px #a7039c, 0 0 75px #a7039c,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #a7039c, inset 0 0 35px #a7039c, inset 0 0 40px #a7039c, inset 0 0 50px #a7039c, inset 0 0 75px #a7039c;
+          }
+        }
+
+        @keyframes neon10 {
+          from {
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #e5009a, 0 0 70px #e5009a, 0 0 80px #e5009a, 0 0 100px #e5009a, 0 0 150px #e5009a,
+            inset 0 0 10px #fff, inset 0 0 20px #fff, inset 0 0 30px #fff, inset 0 0 40px #e5009a, inset 0 0 70px #e5009a, inset 0 0 80px #e5009a, inset 0 0 100px #e5009a, inset 0 0 150px #e5009a;
+          }
+          to {
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #e5009a, 0 0 35px #e5009a, 0 0 40px #e5009a, 0 0 50px #e5009a, 0 0 75px #e5009a,
+            inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #e5009a, inset 0 0 35px #e5009a, inset 0 0 40px #e5009a, inset 0 0 50px #e5009a, inset 0 0 75px #e5009a;
+          }
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
-<h1>Dad Joke Service</h1>
-<p>Please enter dad joke below</p>
-<div>
-    <textarea id="joke-text" cols="40" rows="15"></textarea>
-    <input type="button" value="Submit!" id="submit-button">
+<div class="background">
+    <div class="rings-layer">
+        <div id="ring-10" class="ring base"></div>
+        <div id="ring-10-lamp" class="ring lamp"></div>
+        <div id="ring-9" class="ring base"></div>
+        <div id="ring-9-lamp" class="ring lamp"></div>
+        <div id="ring-8" class="ring base"></div>
+        <div id="ring-8-lamp" class="ring lamp"></div>
+        <div id="ring-7" class="ring base"></div>
+        <div id="ring-7-lamp" class="ring lamp"></div>
+        <div id="ring-6" class="ring base"></div>
+        <div id="ring-6-lamp" class="ring lamp"></div>
+        <div id="ring-5" class="ring base"></div>
+        <div id="ring-5-lamp" class="ring lamp"></div>
+        <div id="ring-4" class="ring base"></div>
+        <div id="ring-4-lamp" class="ring lamp"></div>
+        <div id="ring-3" class="ring base"></div>
+        <div id="ring-3-lamp" class="ring lamp"></div>
+        <div id="ring-2" class="ring base"></div>
+        <div id="ring-2-lamp" class="ring lamp"></div>
+        <div id="ring-1" class="ring base"></div>
+        <div id="ring-1-lamp" class="ring lamp"></div>
+        <div id="ring-0" class="ring base"></div>
+        <div id="ring-0-lamp" class="ring lamp"></div>
+        <div id="ring-back" class="ring"></div>
+    </div>
+    <div class="content">
+    <h1>Dad Joke Service</h1>
+    <p>Please enter dad joke below</p>
+    <div>
+        <textarea id="joke-text" cols="40" rows="15"></textarea>
+        <input type="button" value="Submit!" id="submit-button">
+    </div>
+</div>
 </div>
 
 <script>
 
     $(document).ready(function () {
-        $("#submit-button").click(function () {
+        $("#submit-button, #ring-back").click(function () {
             $.ajax({
                 type: "POST",
                 url: "/predict/",
@@ -40,12 +438,20 @@
                 dataType: "json",
                 success: function (msg) {
                     console.log(msg.probability);
-                    alert(msg.probability);
                 },
                 error: function (errormessage) {
                     console.log(errormessage);
                 }
             });
+            var ring = $(".ring.base, body");
+            ring.addClass("on");
+            ring.one('webkitTransitionEnd otransitionend msTransitionEnd transitionend', function(e) {
+                var lamp = $(".ring.lamp");
+                lamp.addClass("on");
+            });
+            //ring.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            //    ring.removeClass('on');
+            //});
         });
     });
 

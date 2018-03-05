@@ -1,6 +1,6 @@
 
 from sanic import Sanic
-from sanic.response import json as sanci_json
+from sanic import response
 from predictor import Predictor
 import json
 import h2o
@@ -20,12 +20,14 @@ async def init(_app, _loop):
 async def predict(request):
     joke_text = request.body.decode()
     joke_text = json.dumps(joke_text)
-    return sanci_json({'probability': request.app.predictor.make_prediction(joke_text)})
+    return response.json({'probability': request.app.predictor.make_prediction(joke_text)})
 
 
 def main():
-    app.static('/static', './static')
+    app.static('/', './static')
+    app.static('/', './static/index.html')
     app.run(host='0.0.0.0', port=13321)
+
 
 if __name__ == '__main__':
     main()

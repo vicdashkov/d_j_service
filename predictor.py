@@ -2,6 +2,7 @@ import pandas as pd
 from h2o.frame import H2OFrame
 import h2o
 
+
 class Predictor:
 
     def __init__(self,path_to_w2v_model, path_to_dad_joke_model):
@@ -37,7 +38,6 @@ class Predictor:
         reviews_vec = self.w2v_model.transform(words, aggregate_method="AVERAGE")
         model_data = joke.cbind(reviews_vec)
         return self.dad_joke_model.predict(model_data)
-
 
     def _tokenize(self, sentences):
         tokenized = sentences.tokenize("\\W+")
