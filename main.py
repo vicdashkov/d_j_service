@@ -6,12 +6,12 @@ import json
 import h2o
 
 app = Sanic()
-h2o.init(ip='h2o')
+h2o.init(url='http://localhost:54321')
 
 
 @app.listener('before_server_start')
 async def init(_app, _loop):
-    predictor = Predictor(path_to_w2v_model='/data/w2v.hex', path_to_dad_joke_model='/data/dad_jokes_model.hex')
+    predictor = Predictor(path_to_w2v_model='data/w2v.hex', path_to_dad_joke_model='data/dad_jokes_model.hex')
     app.predictor = predictor
     print('initialized')
 

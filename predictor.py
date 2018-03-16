@@ -5,7 +5,7 @@ import h2o
 
 class Predictor:
 
-    def __init__(self,path_to_w2v_model, path_to_dad_joke_model):
+    def __init__(self, path_to_w2v_model, path_to_dad_joke_model):
         stop_words_data_path = "https://raw.githubusercontent.com/h2oai/h2o-tutorials/master/h2o-world-2017/nlp/stopwords.csv"
         self.STOP_WORDS = pd.read_csv(stop_words_data_path, header=0)
         self.STOP_WORDS = list(self.STOP_WORDS['STOP_WORD'])

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Dad Joke Service</title>
     <style>
@@ -23,21 +24,47 @@
             text-align: center;
         }
 
-        h1, p {
+        h1 {
             font-size: 80px;
-            border-color: white;
+        }
+
+        p {
+            font-size: 60px;
+        }
+
+        textarea {
+            width: 480px;
+            height: 240px;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        #submit-button {
+            outline: none;
+            border: none;
+            background: white;
+            border-radius: 4px;
+            font-size: 20px;
+            padding: 10px 20px;
+            margin-top: 10px;
         }
 
         .content {
-                position: relative;
-                display: none;
+            position: relative;
+            transition: opacity 0.2s ease-in;
+            color: white;
+            text-shadow: 0 0 10px black;
+        }
+
+        .content.hide {
+            opacity: 0;
         }
 
         .rings-layer {
             position: absolute;
             width: 100%;
             height: 136%;
-            top:31%;
+            top:10%;
             transition: top 10s ease-in;
         }
 
@@ -60,13 +87,38 @@
             animation: 1.5s ease-in-out 0.25s infinite alternate;
         }
 
-
         #ring-back {
+            position: relative;
             transition: none;
             width: 14vw;
             height: 14vw;
             background-color: #222;
             border: 11px solid #CA0012;
+        }
+
+        #ring-back p {
+            margin: 0;
+            font-family: Monoton;
+            color: #222;
+            transition: all 0.5s ease-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            animation: 1.5s ease-in-out 0.25s infinite alternate;
+        }
+
+        #ring-back.no p.no {
+            display: block;
+            color: white;
+            animation-name: neon-text1;
+        }
+
+        #ring-back.yes p.yes {
+            display: block;
+            color: white;
+            animation-name: neon-text2;
         }
 
         #ring-0 {
@@ -385,6 +437,24 @@
             inset 0 0 5px #fff, inset 0 0 10px #fff, inset 0 0 15px #fff, inset 0 0 20px #e5009a, inset 0 0 35px #e5009a, inset 0 0 40px #e5009a, inset 0 0 50px #e5009a, inset 0 0 75px #e5009a;
           }
         }
+
+        @keyframes neon-text1 {
+          from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff0b1b, 0 0 70px #ff0b1b, 0 0 80px #ff0b1b, 0 0 100px #ff0b1b, 0 0 150px #ff0b1b;
+          }
+          to {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0b1b, 0 0 35px #ff0b1b, 0 0 40px #ff0b1b, 0 0 50px #ff0b1b, 0 0 75px #ff0b1b;
+          }
+        }
+
+        @keyframes neon-text2 {
+          from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #4dec6b, 0 0 70px #4dec6b, 0 0 80px #4dec6b, 0 0 100px #4dec6b, 0 0 150px #4dec6b;
+          }
+          to {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4dec6b, 0 0 35px #4dec6b, 0 0 40px #4dec6b, 0 0 50px #4dec6b, 0 0 75px #4dec6b;
+          }
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -414,13 +484,17 @@
         <div id="ring-1-lamp" class="ring lamp"></div>
         <div id="ring-0" class="ring base"></div>
         <div id="ring-0-lamp" class="ring lamp"></div>
-        <div id="ring-back" class="ring"></div>
+        <div id="ring-back" class="ring">
+            <p class="no">NO</p>
+            <p class="yes">YES</p>
+        </div>
     </div>
     <div class="content">
     <h1>Dad Joke Service</h1>
     <p>Please enter dad joke below</p>
     <div>
         <textarea id="joke-text" cols="40" rows="15"></textarea>
+        <br>
         <input type="button" value="Submit!" id="submit-button">
     </div>
 </div>
@@ -428,8 +502,55 @@
 
 <script>
 
+    function turnOnRing(number) {
+            turnOffRing(2);
+            var ring = $("#ring-" + number + ", #ring-" + (number+1));
+            ring.addClass("on");
+            setTimeout(function() {
+                var lamp = $("#ring-" + number + "-lamp");
+                lamp.addClass("on");
+            }, 200)
+    }
+
+    function turnOffRing(number) {
+        var ring = $("#ring-" + number + ", #ring-" + number + "-lamp, #ring-" + (number+1));
+        ring.removeClass("on");
+    }
+
+    function onSuccess(probability) {
+        console.log(probability);
+        if (probability > 0.5) {
+            turnOnRing(4);
+            setTimeout(function() {
+                $("#ring-back").addClass("yes");
+            }, 200);
+        } else {
+            turnOnRing(0);
+            setTimeout(function() {
+                $("#ring-back").addClass("no");
+            }, 200);
+        }
+        $("body").one("click", function() {
+            turnOffRing(0);
+            turnOffRing(4);
+            $(".content").removeClass("hide");
+            $("#ring-back").removeClass("yes no");
+        });
+    }
+
+    // Ill call you later. Don't call me later, call me Dad.
+
     $(document).ready(function () {
-        $("#submit-button, #ring-back").click(function () {
+        $("#submit-button").click(function () {
+            var content = $(".content");
+            content.addClass("hide");
+            $("textarea").val("");
+            content.one('webkitTransitionEnd otransitionend msTransitionEnd transitionend', function(e) {
+                if (content.hasClass("hide")) {
+                    turnOnRing(2);
+                }
+            });
+
             $.ajax({
                 type: "POST",
                 url: "/predict/",
@@ -437,21 +558,12 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    console.log(msg.probability);
+                    onSuccess(msg.probability);
                 },
                 error: function (errormessage) {
                     console.log(errormessage);
                 }
             });
-            var ring = $(".ring.base, body");
-            ring.addClass("on");
-            ring.one('webkitTransitionEnd otransitionend msTransitionEnd transitionend', function(e) {
-                var lamp = $(".ring.lamp");
-                lamp.addClass("on");
-            });
-            //ring.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
-            //    ring.removeClass('on');
-            //});
         });
     });
 
