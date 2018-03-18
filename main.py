@@ -6,7 +6,7 @@ import json
 import h2o
 
 app = Sanic()
-h2o.init(url='http://localhost:54321')
+h2o.init(ip='h2o')
 
 
 @app.listener('before_server_start')
@@ -19,8 +19,11 @@ async def init(_app, _loop):
 @app.route('/predict', methods=['POST'])
 async def predict(request):
     joke_text = request.body.decode()
+    print(joke_text)
     joke_text = json.dumps(joke_text)
-    return response.json({'probability': request.app.predictor.make_prediction(joke_text)})
+    prediction = request.app.predictor.make_prediction(joke_text)
+    print(prediction)
+    return response.json({'probability': prediction})
 
 
 def main():

@@ -544,7 +544,7 @@
         $("#submit-button").click(function () {
             var content = $(".content");
             content.addClass("hide");
-            $("textarea").val("");
+
             content.one('webkitTransitionEnd otransitionend msTransitionEnd transitionend', function(e) {
                 if (content.hasClass("hide")) {
                     turnOnRing(2);
@@ -564,6 +564,7 @@
                     console.log(errormessage);
                 }
             });
+            $("textarea").val("");
         });
     });
 
